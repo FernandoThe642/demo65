@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DadoComponent implements OnInit {
   valor = 0
-  @Input()  color:string = ''
+
   
 
   ngOnInit(): void {

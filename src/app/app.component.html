@@ -47,7 +47,7 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Demo {{ name }}</h1>
+      <!-- <h1>Demo {{ name }}</h1>
       <p>
         Nombre: {{name}} <br/>
         Edad = {{edad}} {{esMayorDeEdad()}} <br/>
@@ -65,10 +65,11 @@
         {{contador}}
         <button (click)="incrementar()">Incrementar</button>
       </p>
-      <br/>
+      <br/> -->
 
-      <form>
-        <input type="text" name="txtName" [(ngModel)]="name"/> <!-- El [ se usa pra recuperar el valor y () para enviar el valor-->
+       <!-- El [ se usa pra recuperar el valor y () para enviar el valor-->
+      <!-- <form>
+        <input type="text" name="txtName" [(ngModel)]="name"/>
       </form>
 
       <form>
@@ -76,7 +77,8 @@
         <input type="number" name="txtB" [(ngModel)]="b"/> <br/>
         <input type="number" name="txtC" [(ngModel)]="c"/> <br/>
         <button (click)="sumar()">Sumar</button>
-      </form><br/>
+      </form><br/> -->
+      
       <router-outlet /> 
 
     </div>
@@ -84,6 +86,9 @@
 
     <div class="right-side">
       <div class="pill-group">
+        <a class="pill" [routerLink]="['/pages/inicio']">
+          inicio
+          </a>
         
         <a class="pill" [routerLink]="['/pages/mision']">
         Mision
@@ -91,7 +96,7 @@
         <a class="pill" [routerLink]="['/pages/acerca-de']">
          Acerca de
           </a>
-        <table border="1">
+        <!-- <table border="1">
           <tbody>
           <tr>
             <th>Código</th>
@@ -109,19 +114,19 @@
             </td>
           </tr>
         </tbody>
-        </table>
+        </table> -->
         
         <!-- Formulario -->
-         <app-formulario></app-formulario>
+         <!-- <app-formulario></app-formulario>
         <p>
         Código:     <input type="number" name="txtCodigo" [(ngModel)]="codigo"/> <br/>
         Descripción:<input type="text" name="txtDescripcion" [(ngModel)]="descripcion"/> <br/>
         Precio:     <input type="number" name="txtPrecio" [(ngModel)]="precio"/> <br/>
         </p>
-        <button (click)="guardar()">Guardar</button>
+        <button (click)="guardar()">Guardar</button> -->
 
       <hr>
-       <p> <app-dado #dado1 color="red"></app-dado> 
+       <!-- <p> <app-dado #dado1 color="red"></app-dado> 
            <app-dado #dado2 color="black"></app-dado>
            <app-dado #dado3 color="green"></app-dado> 
       </p>
@@ -132,7 +137,7 @@
         <button (click)="dado1.lanzar()">Lanzar 1</button>
         <button (click)="dado2.lanzar()">Lanzar 2</button>
         <button (click)="dado3.lanzar()">Lanzar 3</button>
-        <button (click)="lanzar()">Lanzar</button>
+        <button (click)="lanzar()">Lanzar</button> -->
 
       </div>
       

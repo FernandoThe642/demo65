@@ -9,7 +9,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class CronometroComponent implements OnInit{
   segundos:number = 0
-  @Output() minuto = new EventEmitter()
+  @Output() minuto = new EventEmitter() 
   
   ngOnInit(): void {
       this.segundos = 0

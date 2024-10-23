@@ -1,1 +1,96 @@
-<p>inicio works!</p>
+<h1>Demo {{ name }}</h1>
+      <p>
+        Nombre: {{name}} <br/>
+        Edad = {{edad}} {{esMayorDeEdad()}} <br/>
+        Salario Mensual = {{salario}} <br/>
+        Salario anual = {{ salario*12 }}
+      </p>
+      <p (click)="incrementar()" > 
+        Edad = {{edad}} <span *ngIf="edad < 18"> Es menor de edad </span>
+      </p>
+      <ul>
+        <li *ngFor="let sueldo of sueldos">{{sueldo*contador}}</li>
+      </ul> 
+      <br/>
+      <p>
+        {{contador}}
+        <button (click)="incrementar()">Incrementar</button>
+      </p>
+      <br/>
+
+<form>
+    <input type="text" name="txtName" [(ngModel)]="name"/>
+  </form>
+
+  <form>
+    <input type="number" name="txtA" [(ngModel)]="a"/> <br/>
+    <input type="number" name="txtB" [(ngModel)]="b"/> <br/>
+    <input type="number" name="txtC" [(ngModel)]="c"/> <br/>
+    <button (click)="sumar()">Sumar</button>
+  </form><br/>
+<h2>Tabla Artículos</h2>
+  <table border="1">
+    <tr>
+      <th>Codigo</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let articulo of articulos">
+      <td>{{ articulo.codigo }}</td>
+      <td>{{ articulo.descripcion }}</td>
+      <td>{{ articulo.precio }}</td>
+      <td>
+        <button (click)="cargarArticulo(articulo.codigo)">Seleccionar</button>
+        <button class="eliminar-btn" (click)="borrarArticulo(articulo.codigo)">Borrar</button>
+      </td>
+    </tr>
+  </table>
+
+  <app-formulario
+  [codigo]="codigo"
+  [descripcion]="descripcion"
+  [precio]="precio"
+  (guardarArticulo)="guardarArticulo($event)"
+  (borrarArticulo)="borrarArticulo($event)">
+  (limpiar)="limpiarFormulario($event)">
+</app-formulario>
+<hr>
+
+<h2> Dados </h2>
+<p> 
+  <app-dado #dado1></app-dado> 
+    <app-dado #dado2 ></app-dado>
+    <app-dado #dado3 ></app-dado> 
+</p>
+<img *ngIf="mostrarImagen" src="./assets/ganaste.jpg" alt="Ganaste" />
+
+
+
+ <button (click)="dado1.lanzar()">Lanzar 1</button>
+ <button (click)="dado2.lanzar()">Lanzar 2</button>
+ <button (click)="dado3.lanzar()">Lanzar 3</button>
+ <button (click)="lanzar()">Lanzar</button>
+
+ <hr>
+
+ <h2> Tabla de Perros</h2>
+ <table border="1">
+  <tr>
+    <th>Nombre</th>
+    <th>Raza</th>
+    <th>Foto</th>
+    <!-- <th>Acciones</th> -->
+  </tr>
+  <tr *ngFor="let perro of perros">
+    <td>{{ perro.nombre }}</td>
+    <td>{{ perro.raza }}</td>    
+    <td>      
+      <img src="{{perro.foto}}" width="50px"><img/>
+    </td>    
+    <!-- <td>
+      <button>Seleccionar</button>
+      <button>Borrar</button>
+    </td> -->
+  </tr>
+</table>

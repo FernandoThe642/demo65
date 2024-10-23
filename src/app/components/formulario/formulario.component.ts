@@ -1,6 +1,9 @@
-import { Component, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
 @Component({
   selector: 'app-formulario',
   standalone: true,
@@ -9,38 +12,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './formulario.component.scss'
 })
 export class FormularioComponent {
-  codigo = 0;
-  descripcion = '';
-  precio = 0;
-  articulos =[
-    {codigo:1, descripcion:"TV", precio:120},
-    {codigo:2, descripcion:"Microondas", precio:356},
-    {codigo:3, descripcion:"Licuadora", precio:40},
-    {codigo:4, descripcion:"Lisscuadora", precio:40}
-  ]
-  ngOnInit(): void {
-    this.guardar()
-    this.articulos
- }
-  guardar(){
-    const artExiste = this.articulos.find(articulo => articulo.codigo === this.codigo);
-  
-    if (artExiste) {
-      artExiste.descripcion = this.descripcion;
-      artExiste.precio = this.precio;
+  @Input() codigo: number | null = null; 
+  @Input() descripcion: string = ''; 
+  @Input() precio: number | null = null; 
+  @Output() guardarArticulo = new EventEmitter<{ codigo: number; descripcion: string; precio: number }>();
+  @Output() borrarArticulo = new EventEmitter<number>(); 
 
-    } else {
-      const artNuevo = {
-        codigo: this.codigo,
-        descripcion: this.descripcion,
-        precio: this.precio
-      };
-      this.articulos.push(artNuevo);
-    }
+  guardar() {
 
-    this.codigo = 0;
+    const articulo = {
+      codigo: this.codigo!,
+      descripcion: this.descripcion,
+      precio: this.precio!
+    };
+
+    this.guardarArticulo.emit(articulo);   
+    this.limpiarFormulario(); 
+  }
+
+  limpiarFormulario() {
+    this.codigo = null;
     this.descripcion = '';
-    this.precio = 0;
+    this.precio = null;
   }
 
 }
