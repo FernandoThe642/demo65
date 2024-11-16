@@ -7,10 +7,11 @@ import { CronometroComponent } from "../../components/cronometro/cronometro.comp
 import { FormularioComponent } from "../../components/formulario/formulario.component";
 import { GestionPerrosService } from '../../gestion-perros.service';
 import { AcercaDeComponent } from "../../pages/acerca-de/acerca-de.component";
+import { PerrosfbService } from '../../services/perrosfb.service';
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule, DadoComponent, CronometroComponent, FormularioComponent, AcercaDeComponent, RouterModule],
+  imports: [CommonModule, FormsModule, DadoComponent, FormularioComponent, RouterModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
@@ -46,41 +47,40 @@ export class InicioComponent {
 
 // Articulos
 
-   articulos: Articulo[] = [];
-   codigo: number | null = null;
-   descripcion: string = '';
-   precio: number | null = null;
- 
+articulos: Articulo[] = [];
+codigo: number | null = null;
+descripcion: string = '';
+precio: number | null = null;
+    
   
 cargarArticulo(codigo: number) {
-     const articulo = this.articulos.find(a => a.codigo === codigo);
-     if (articulo) {
-       this.codigo = articulo.codigo;
-       this.descripcion = articulo.descripcion;
-       this.precio = articulo.precio;
-     }
- }
- 
+  const articulo = this.articulos.find(a => a.codigo === codigo);
+    if (articulo) {
+      this.codigo = articulo.codigo;
+      this.descripcion = articulo.descripcion;
+      this.precio = articulo.precio;
+    }
+  }
   
 guardarArticulo(articulo: { codigo: number; descripcion: string; precio: number }) {
-     const index = this.articulos.findIndex(a => a.codigo === articulo.codigo);
-     if (index > -1) {
-       this.articulos[index] = articulo;
-     } else {
-       this.articulos.push(articulo);
-     }    
+    const index = this.articulos.findIndex(a => a.codigo === articulo.codigo);
+    if (index > -1) {
+      this.articulos[index] = articulo;
+    } else {
+      this.articulos.push(articulo);
+    }    
 }
  
 borrarArticulo(codigo: number) {
-     this.articulos = this.articulos.filter(a => a.codigo !== codigo);
-     this.limpiarFormulario();
+    this.articulos = this.articulos.filter(a => a.codigo !== codigo);
+    this.limpiarFormulario();
 }
  
    
 limpiarFormulario() {
-     this.codigo = null;
-     this.descripcion = '';
-     this.precio = null;
+    this.codigo = null;
+    this.descripcion = '';
+    this.precio = null;
 }
 
 
@@ -114,7 +114,9 @@ lanzar() {
 // Tabla perros:
 perros: any
 
-  constructor(private perrosService: GestionPerrosService) {
+  constructor(private perrosService: GestionPerrosService,
+              private perrosfbService: PerrosfbService
+  ) {
 
   }
 
@@ -122,6 +124,9 @@ perros: any
     this.perrosService.addPerros('Carlos','Dalmata')
     this.perrosService.addPerros('Firulais','Boxer')
     this.perros = this.perrosService.getPerros()
+
+    // this.perrosfbService.addPerro('Rex2','Chiguagua')
+    // this.perrosfbService.addPerro('Rex3','Chiguagua')
   }
 
 }

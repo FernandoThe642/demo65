@@ -1,0 +1,30 @@
+<div class="formulario-contenedor">
+    <form #formRef="ngForm" (ngSubmit)="guardarPerro(formRef)" >
+    <fieldset>
+        <label for="nombre">Nombre:</label>
+        <input required type="text" [(ngModel)]="perro.nombre" name="nombre" >
+        <br>
+        <label for="raza">Raza:</label>
+        <input required type="text" [(ngModel)]="perro.raza" name="raza" >
+        <br>
+    <button type="submit">Agregar Perro</button>
+    </fieldset>
+    </form>
+</div>
+
+<h2> Tabla de Perros</h2>
+<table border="1">
+<tr>
+    <th>Nombre</th>
+    <th>Raza</th>
+    <th>Acciones</th>
+</tr>
+<tr *ngFor="let perro of perros">
+    <td>{{ perro.nombre }}</td>
+    <td>{{ perro.raza }}</td>    
+<td>
+    <button (click)="seleccionar(perro.id)">Seleccionar</button>
+    <button (click)="borrar(perro.id)">Borrar</button> 
+</td>
+</tr>
+</table>

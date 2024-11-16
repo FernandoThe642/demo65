@@ -12,7 +12,7 @@ import { AcercaDeComponent } from "./pages/acerca-de/acerca-de.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule, DadoComponent, CronometroComponent, FormularioComponent, AcercaDeComponent, RouterModule],
+  imports: [RouterOutlet, CommonModule, FormsModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
   
